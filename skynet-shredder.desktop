@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Skynet Shredder
+Comment=Securely delete files and folders (HDD/SSD aware)
+Exec=python3 /mnt/data/skynet-shredder/skynet_shredder.py
+Icon=/mnt/data/skynet-shredder/assets/icon.png
+Terminal=false
+Type=Application
+Categories=Utility;Security;System;

@@ -1,34 +1,31 @@
-# 🔥 Skynet Shredder
+# Skynet Shredder
 
-**Secure GUI tool to permanently delete files and folders – HDD & SSD aware, recursive, and themed after the legendary Skynet AI.**
+Secure GUI file/dir deletion for Linux (HDD/SSD-aware). PyQt5.
 
-![Skynet Shredder Logo](assets/icon.png)
+## Features
+- Drag & Drop files/folders
+- Recursive delete for directories
+- HDD: multi-pass overwrite via `shred` (1–35 passes / Gutmann)
+- SSD: delete + `fstrim` on mountpoints (TRIM) for best-effort secure wipe
+- Live log & progress bar
+- Dark Skynet theme; custom icon
 
----
-
-[![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/platform-linux-lightgrey.svg)](#)
-
----
-
-## 🚀 Features
-
-- **Drag & Drop**: Add files and folders easily  
-- **Recursive delete**: Wipe entire directories securely  
-- **HDD mode**: Multi-pass overwrite using `shred` (1–35 passes or Gutmann method)  
-- **SSD mode**: Smart delete + `fstrim` (TRIM) for block-level wipe  
-- **Progress display**: Live logging and progress bar UI  
-- **Dark futuristic theme**: Inspired by the Skynet AI  
-- **Works right away** on Debian/Ubuntu-based Linux distros  
-- No external database, internet or telemetry needed
-
----
-
-## 📦 Installation
-
-### 🔧 Requirements (Debian 13 / Ubuntu)
-
+## Install (Debian 13)
 ```bash
 sudo apt update
-sudo apt install -y python3 python3-pyqt5 coreutils util-linux
+sudo apt install -y python3 python3-pyqt5 coreutils util-linux findmnt
+# Run locally
+python3 skynet_shredder.py
+```
+
+## Optional tools
+- `srm` (secure-delete package) as fallback
+```bash
+sudo apt install secure-delete
+```
+
+## Notes
+- On SSDs, true per-file secure overwrite is not guaranteed due to wear-leveling.
+  This app deletes files and triggers TRIM (`fstrim`) on the corresponding mountpoints.
+- For whole-disk secure-erase: use manufacturer utilities, `blkdiscard`, or `nvme format`
+  (dangerous; not exposed by default).
